@@ -1,36 +1,38 @@
 {
-  "name": "next-starter-tailwind",
-  "version": "1.1.0",
-  "description": "Next.js starter styled with Tailwind CSS",
-  "main": "index.js",
-  "scripts": {
-    "analyze:tailwind-css-class-order": "rustywind --dry-run .",
-    "analyze": "npm run analyze:tailwind-css-class-order",
-    "fix:tailwind-css-class-order": "rustywind --write .",
-    "fix": "npm run fix:tailwind-css-class-order",
-    "dev": "next",
-    "build": "next build",
-    "export": "npm run build && next export",
-    "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/taylorbryant/next-starter-tailwind.git"
-  },
-  "author": "Taylor Bryant",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/taylorbryant/next-starter-tailwind/issues"
-  },
-  "homepage": "https://github.com/taylorbryant/next-starter-tailwind#readme",
+  "name": "life-calendar",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "next": "9.5.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "@craco/craco": "^5.7.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.7.0",
+    "craco-less": "^1.17.0",
+    "dayjs": "^1.9.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3"
   },
-  "devDependencies": {
-    "rustywind": "0.6.7",
-    "tailwindcss": "1.8.11"
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
