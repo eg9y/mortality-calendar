@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.box {
+  width: 10px;
+  height: 10px;
+  background-color: brown;
+}
