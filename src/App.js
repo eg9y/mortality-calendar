@@ -45,8 +45,6 @@ const App = () => {
           <Content style={{
             marginLeft: '200px',
             marginRight: '200px',
-            paddingLeft: '0.5vw',
-            paddingRight: '0.5vw',
           }}>
             <Calendar></Calendar>
           </Content>
@@ -78,6 +76,10 @@ const App = () => {
             </Space>
             <Text style={{ fontStyle: "italic" }}>“If you live each day as if it were your last, someday you'll be right. Every morning I looked in the mirror and asked myself: If today were the last day of my life, would I want to do what I do today? ”</Text>
 
+            <Col><Button style={{ backgroundColor: 'orange', color: 'black', marginTop: '40vh' }}>
+              Donate Bitcoin
+                      </Button>
+            </Col>
           </Sider>
         </Layout>
         <Footer>Footer</Footer>

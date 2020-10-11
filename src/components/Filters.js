@@ -54,7 +54,7 @@ const Filters = (props) => {
                                 label='Birthdate'
                                 required={true}
                             >
-                                <DateRangeFilter />
+                                <DateFilter />
                             </Form.Item>
                             <Form.Item
                                 // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
@@ -117,7 +117,7 @@ const Filters = (props) => {
                                     }}
                                     style={{ width: '60%' }}
                                 >
-                                    <PlusOutlined /> Add field
+                                    <PlusOutlined /> Add phase
                 </Button>
                                 <Form.ErrorList errors={errors} />
                             </Form.Item>
