@@ -17,11 +17,14 @@ const Legend = () => {
         },
         {
             title: "Future",
-            color: "white",
+            color: "#7cb305",
         },
     ]
     return (
         <List
+            style={{
+                marginTop: '1vh'
+            }}
             size="small"
             header={<div>Legend</div>}
             bordered

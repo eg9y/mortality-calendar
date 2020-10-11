@@ -1,19 +1,39 @@
 @import "~antd/dist/antd.less";
 
 .box {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   color: black;
   font-size: 8px;
-  margin: auto;
+  font-weight: bolder;
 }
 
 #calendar-grid {
   display: grid;
-  grid-template-columns: 1.2fr repeat(52, 1fr);
+  grid-template-columns: 20px repeat(52, 1fr);
   /* grid-template-columns: 1.5fr repeat(48, 1fr); */
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .site-card-border-less-wrapper {
   padding: 30px;
+}
+
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+.dynamic-delete-button:hover {
+  color: #777;
+}
+.dynamic-delete-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
