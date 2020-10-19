@@ -1,6 +1,6 @@
 import './App.less';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Row, Col, Space, Typography, Form, Button } from 'antd';
 import * as dayjs from 'dayjs';
 
@@ -11,7 +11,7 @@ import Legend from './components/Legend';
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime);
 const { Title, Text } = Typography;
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 const birthDate = dayjs('1998-08-09');
 
@@ -20,7 +20,13 @@ const weeksFromBirth = dayjs().diff(birthDate, 'week');
 console.log(weeksFromBirth);
 
 const App = () => {
+  const [fields, setFields] = useState([]);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    console.log('fields updated, ', fields);
+  }, [fields]);
+
   return (
     <div className="App">
       <Layout>
@@ -37,8 +43,12 @@ const App = () => {
             }}>
             <Title style={{
               color: 'white'
-            }}>Mortality Calendar</Title>
-            <Filters form={form} />
+            }}>Mortality Calendar
+            </Title>
+            <Filters
+              setFields={setFields}
+              form={form}
+            />
             <Legend />
 
           </Sider>
@@ -46,7 +56,9 @@ const App = () => {
             marginLeft: '200px',
             marginRight: '200px',
           }}>
-            <Calendar></Calendar>
+            <Calendar fields={fields}
+              form={form}
+            ></Calendar>
           </Content>
           <Sider
             // theme="light" 
