@@ -21,6 +21,8 @@ console.log(weeksFromBirth);
 
 const App = () => {
   const [fields, setFields] = useState([]);
+  const [dynamicFields, setDynamicFields] = useState([]);
+
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -47,6 +49,8 @@ const App = () => {
             </Title>
             <Filters
               setFields={setFields}
+              dynamicFields={dynamicFields}
+              setDynamicFields={setDynamicFields}
               form={form}
             />
             <Legend />
@@ -57,6 +61,7 @@ const App = () => {
             marginRight: '200px',
           }}>
             <Calendar fields={fields}
+              dynamicFields={dynamicFields}
               form={form}
             ></Calendar>
           </Content>

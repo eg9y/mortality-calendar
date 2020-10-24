@@ -2,12 +2,12 @@ import '../App.less';
 
 import React, { useState } from 'react';
 import * as dayjs from 'dayjs'
-
-import { Form, Button, Input, Row, Col, Switch } from 'antd';
-
+import { Form, Button, Input, Row, Col, Switch, Popover } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { CompactPicker } from 'react-color';
 
 import DatePicker from "./DatePicker";
+import Box from "./Box";
 const { RangePicker } = DatePicker;
 
 
@@ -17,10 +17,9 @@ const layout = {
 };
 
 const Filters = (props) => {
-    const { setFields, form } = props;
+    const { setFields, form, dynamicFields, setDynamicFields } = props;
 
     const [newPhaseName, setNewPhaseName] = useState('');
-    const [dynamicFields, setDynamicFields] = useState([]);
 
     const onFinish = values => {
         console.log('Success:', values);
@@ -52,7 +51,11 @@ const Filters = (props) => {
                 label='Birthdate'
                 required={true}
             >
-                <DatePicker disabledDate={disabledDate} defaultValue={dayjs('1998-09-08')} />
+                <DatePicker
+                    disabledDate={disabledDate}
+                    defaultValue={dayjs('1998-01-01')}
+                    format="MMM D,YYYY"
+                />
             </Form.Item>
             <Form.List
                 name="phases"
@@ -62,7 +65,7 @@ const Filters = (props) => {
                         <div>
                             {fields.map((field, index) => (
                                 <Form.Item
-                                    label={<>{dynamicFields[index]}
+                                    label={<>{dynamicFields[index].name}
 
                                         <MinusCircleOutlined
                                             className="dynamic-delete-button"
@@ -75,6 +78,35 @@ const Filters = (props) => {
                                                 remove(field.name);
                                             }}
                                         />
+                                        <Popover content={
+                                            <CompactPicker
+                                                color={dynamicFields[index].color}
+                                                disableAlpha={true}
+                                                onChange={
+                                                    (color) => {
+                                                        setDynamicFields((fields) => fields.map((field, currIndex) => {
+                                                            if (currIndex === index) {
+                                                                return {
+                                                                    name: field.name,
+                                                                    color: color.hex
+                                                                }
+                                                            }
+                                                            return field;
+                                                        }));
+                                                    }
+                                                }
+                                            />
+                                        } title="Title" trigger="click">
+                                            <div style={{
+                                                backgroundColor: dynamicFields[index].color,
+                                                padding: '5px',
+                                                borderRadius: '1px',
+                                                boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+                                                display: 'inline-block',
+                                                cursor: 'pointer',
+                                            }}>
+                                            </div>
+                                        </Popover>
                                     </>}
                                     name={index}
                                     required={false}
@@ -88,7 +120,6 @@ const Filters = (props) => {
                                             allowEmpty={[false, false]}
                                             style={{ width: "75%" }}
                                             suffixIcon={<></>}
-                                            picker="week"
                                             placeholder={['Start', 'End']}
                                             renderExtraFooter={() => 'end date is optional'}
                                         />
@@ -118,7 +149,10 @@ const Filters = (props) => {
                                                             return Promise.reject(new Error('Must enter phase name'));
                                                         } else {
                                                             add();
-                                                            setDynamicFields((phases) => [...phases, newPhaseName]);
+                                                            setDynamicFields((phases) => [...phases, {
+                                                                name: newPhaseName,
+                                                                color: '#333'
+                                                            }]);
                                                             setNewPhaseName('');
                                                         }
                                                     } catch (errorInfo) {
