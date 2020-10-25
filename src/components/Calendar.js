@@ -49,8 +49,6 @@ function Calendar(props) {
         const newBirthDate = form.getFieldValue('birthDate');
         const newPhase = form.getFieldValue('phases');
 
-        console.log('newPhase:::', JSON.stringify(newPhase, null, 4));
-
         if (newBirthDate) {
             const templateMonths = [
                 "Jan",
@@ -73,7 +71,9 @@ function Calendar(props) {
 
             setAge(() => dayjs().year() - form.getFieldValue('birthDate').year());
             setBirthDate(() => form.getFieldValue('birthDate'));
-        } else if (newPhase && newPhase.length > 0 && newPhase[0] !== undefined) {
+
+        }
+        if (newPhase && newPhase.length > 0 && newPhase[0] !== undefined) {
             let sortedPhase = newPhase.map((phase, index) => {
                 if (!phase) {
                     return null
@@ -83,7 +83,6 @@ function Calendar(props) {
                     color: dynamicFields[index].color
                 }
             });
-            console.log('sortedPhase:::', JSON.stringify(sortedPhase, null, 4));
             sortedPhase = sortedPhase.sort((phaseA, phaseB) => {
                 return phaseA && phaseB ? phaseA.date[1].diff(phaseB.date[0]) >= 0 : 0;
             });
@@ -94,9 +93,6 @@ function Calendar(props) {
         } else if (newPhase && (newPhase.length === 0 || newPhase[0] === undefined || newPhase[0] === null)) {
             setPhases(newPhase.map((phase) => ({ date: phase })));
             setCalendar(Array(82).fill(Array(52).fill({ color: "none" })));
-            console.log('deleted everything');
-        } else {
-            console.log('all values', form.getFieldsValue());
         }
     }, [birthDate, dynamicFields, fields, form]);
 

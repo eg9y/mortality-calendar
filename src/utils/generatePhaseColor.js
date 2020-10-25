@@ -1,5 +1,4 @@
 export const generatePhaseColor = (phases, birthDate) => {
-    console.log(phases[0]);
     let calendarBlocks = Array(phases[0].date[0].diff(birthDate, "week")).fill({ color: "none" });
     let last = null;
 

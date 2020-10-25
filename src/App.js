@@ -17,17 +17,11 @@ const birthDate = dayjs('1998-08-09');
 
 const weeksFromBirth = dayjs().diff(birthDate, 'week');
 
-console.log(weeksFromBirth);
-
 const App = () => {
   const [fields, setFields] = useState([]);
   const [dynamicFields, setDynamicFields] = useState([]);
 
   const [form] = Form.useForm();
-
-  useEffect(() => {
-    console.log('fields updated, ', fields);
-  }, [fields]);
 
   return (
     <div className="App">
